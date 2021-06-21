@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Cinema12.Models.Schedule>
+
+@{
+    ViewBag.Title = "ScheduleMovie";
+}
+
+<p>
+    <h1>
+        Schedule for @foreach (Cinema12.Models.Movie movie in Cinema12.Models.Movie.GetMoviesList())
+        {
+            if (movie.MovieId == Convert.ToInt32(Request.QueryString["movieId"]))
+            {
+                @movie.Title;
+            }
+        }
+    </h1>
+</p>
+
+<p>
+    @Html.ActionLink("New Schedule", "NewSchedule", new { movieId = Request.QueryString["movieId"] }) |
+    @Html.ActionLink("Back to Movies", "Movies", "Admin")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            Theatre
+        </th>
+        <th>
+            Tickets Left
+        </th>
+        <th>
+            Air Date 
+        </th>
+        <th>
+            Air Day
+        </th>
+        <th>
+            Air Hours
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.TheatreName
+            </td>
+            <td>
+                @item.TicketsLeft
+            </td>
+            <td>
+                @item.StartDate.ToString("dd/MM/yyyy") - @item.EndDate.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+               @item.FromDate.ToString("dd/MM")
+            </td>
+            <td>
+                @item.FromDate.ToString("HH:mm") - @item.ToDate.ToString("HH:mm")
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "NewSchedule", new {movieId = item.MovieId, scheduleId = item.ScheduleId }) |
+                @Html.ActionLink("Delete", "DeleteSchedule", new { scheduleId = item.ScheduleId })
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Cinema12Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="MOVIE">
+    <Key>
+      <PropertyRef Name="MovieId" />
+    </Key>
+    <Property Name="MovieId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Duration" Type="Int32" />
+    <Property Name="Genre" Type="Int32" />
+    <Property Name="Rating" Type="Int32" />
+    <Property Name="Distribution" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Poster" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="Trailer" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="StartDate" Type="DateTime" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="MOVIE_GENRE" Relationship="Self.FK__MOVIE__Genre__1BC821DD" FromRole="MOVIE" ToRole="MOVIE_GENRE" />
+    <NavigationProperty Name="MOVIE_RATING" Relationship="Self.FK__MOVIE__Rating__1CBC4616" FromRole="MOVIE" ToRole="MOVIE_RATING" />
+    <NavigationProperty Name="SCHEDULE" Relationship="Self.FK__SCHEDULE__MovieI__25518C17" FromRole="MOVIE" ToRole="SCHEDULE" />
+  </EntityType>
+  <EntityType Name="MOVIE_GENRE">
+    <Key>
+      <PropertyRef Name="MovieGenreId" />
+    </Key>
+    <Property Name="MovieGenreId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="MOVIE" Relationship="Self.FK__MOVIE__Genre__1BC821DD" FromRole="MOVIE_GENRE" ToRole="MOVIE" />
+  </EntityType>
+  <EntityType Name="MOVIE_RATING">
+    <Key>
+      <PropertyRef Name="MovieRatingId" />
+    </Key>
+    <Property Name="MovieRatingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Acronym" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="MOVIE" Relationship="Self.FK__MOVIE__Rating__1CBC4616" FromRole="MOVIE_RATING" ToRole="MOVIE" />
+  </EntityType>
+  <EntityType Name="RESERVATION">
+    <Key>
+      <PropertyRef Name="ReservationId" />
+    </Key>
+    <Property Name="ReservationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ScheduleId" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Telephone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="NoOfSeats" Type="Int32" />
+    <NavigationProperty Name="RESERVATION_SEATS" Relationship="Self.FK__RESERVATI__Reser__2EDAF651" FromRole="RESERVATION" ToRole="RESERVATION_SEATS" />
+    <NavigationProperty Name="SCHEDULE" Relationship="Self.FK__RESERVATI__Sched__282DF8C2" FromRole="RESERVATION" ToRole="SCHEDULE" />
+  </EntityType>
+  <EntityType Name="RESERVATION_SEATS">
+    <Key>
+      <PropertyRef Name="ReservationSeatsId" />
+    </Key>
+    <Property Name="ReservationSeatsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReservationId" Type="Int32" />
+    <Property Name="SeatId" Type="Int32" />
+    <NavigationProperty Name="RESERVATION" Relationship="Self.FK__RESERVATI__Reser__2EDAF651" FromRole="RESERVATION_SEATS" ToRole="RESERVATION" />
+    <NavigationProperty Name="SEAT" Relationship="Self.FK__RESERVATI__SeatI__2FCF1A8A" FromRole="RESERVATION_SEATS" ToRole="SEAT" />
+  </EntityType>
+  <EntityType Name="SCHEDULE">
+    <Key>
+      <PropertyRef Name="ScheduleId" />
+    </Key>
+    <Property Name="ScheduleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TheatreId" Type="Int32" />
+    <Property Name="MovieId" Type="Int32" />
+    <Property Name="TicketsLeft" Type="Int32" />
+    <Property Name="FromDate" Type="DateTime" Precision="3" />
+    <Property Name="ToDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="MOVIE" Relationship="Self.FK__SCHEDULE__MovieI__25518C17" FromRole="SCHEDULE" ToRole="MOVIE" />
+    <NavigationProperty Name="RESERVATION" Relationship="Self.FK__RESERVATI__Sched__282DF8C2" FromRole="SCHEDULE" ToRole="RESERVATION" />
+    <NavigationProperty Name="THEATRE" Relationship="Self.FK__SCHEDULE__Theatr__245D67DE" FromRole="SCHEDULE" ToRole="THEATRE" />
+  </EntityType>
+  <EntityType Name="SEAT">
+    <Key>
+      <PropertyRef Name="SeatId" />
+    </Key>
+    <Property Name="SeatId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowLetter" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="SeatNumber" Type="Int32" />
+    <NavigationProperty Name="RESERVATION_SEATS" Relationship="Self.FK__RESERVATI__SeatI__2FCF1A8A" FromRole="SEAT" ToRole="RESERVATION_SEATS" />
+  </EntityType>
+  <EntityType Name="THEATRE">
+    <Key>
+      <PropertyRef Name="TheatreId" />
+    </Key>
+    <Property Name="TheatreId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SCHEDULE" Relationship="Self.FK__SCHEDULE__Theatr__245D67DE" FromRole="THEATRE" ToRole="SCHEDULE" />
+  </EntityType>
+  <Association Name="FK__MOVIE__Genre__1BC821DD">
+    <End Role="MOVIE_GENRE" Type="Self.MOVIE_GENRE" Multiplicity="0..1" />
+    <End Role="MOVIE" Type="Self.MOVIE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MOVIE_GENRE">
+        <PropertyRef Name="MovieGenreId" />
+      </Principal>
+      <Dependent Role="MOVIE">
+        <PropertyRef Name="Genre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MOVIE__Rating__1CBC4616">
+    <End Role="MOVIE_RATING" Type="Self.MOVIE_RATING" Multiplicity="0..1" />
+    <End Role="MOVIE" Type="Self.MOVIE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MOVIE_RATING">
+        <PropertyRef Name="MovieRatingId" />
+      </Principal>
+      <Dependent Role="MOVIE">
+        <PropertyRef Name="Rating" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SCHEDULE__MovieI__25518C17">
+    <End Role="MOVIE" Type="Self.MOVIE" Multiplicity="0..1" />
+    <End Role="SCHEDULE" Type="Self.SCHEDULE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MOVIE">
+        <PropertyRef Name="MovieId" />
+      </Principal>
+      <Dependent Role="SCHEDULE">
+        <PropertyRef Name="MovieId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RESERVATI__Reser__2EDAF651">
+    <End Role="RESERVATION" Type="Self.RESERVATION" Multiplicity="0..1" />
+    <End Role="RESERVATION_SEATS" Type="Self.RESERVATION_SEATS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RESERVATION">
+        <PropertyRef Name="ReservationId" />
+      </Principal>
+      <Dependent Role="RESERVATION_SEATS">
+        <PropertyRef Name="ReservationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RESERVATI__Sched__282DF8C2">
+    <End Role="SCHEDULE" Type="Self.SCHEDULE" Multiplicity="0..1" />
+    <End Role="RESERVATION" Type="Self.RESERVATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SCHEDULE">
+        <PropertyRef Name="ScheduleId" />
+      </Principal>
+      <Dependent Role="RESERVATION">
+        <PropertyRef Name="ScheduleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RESERVATI__SeatI__2FCF1A8A">
+    <End Role="SEAT" Type="Self.SEAT" Multiplicity="0..1" />
+    <End Role="RESERVATION_SEATS" Type="Self.RESERVATION_SEATS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SEAT">
+        <PropertyRef Name="SeatId" />
+      </Principal>
+      <Dependent Role="RESERVATION_SEATS">
+        <PropertyRef Name="SeatId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SCHEDULE__Theatr__245D67DE">
+    <End Role="THEATRE" Type="Self.THEATRE" Multiplicity="0..1" />
+    <End Role="SCHEDULE" Type="Self.SCHEDULE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="THEATRE">
+        <PropertyRef Name="TheatreId" />
+      </Principal>
+      <Dependent Role="SCHEDULE">
+        <PropertyRef Name="TheatreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="MOVIE" EntityType="Self.MOVIE" />
+    <EntitySet Name="MOVIE_GENRE" EntityType="Self.MOVIE_GENRE" />
+    <EntitySet Name="MOVIE_RATING" EntityType="Self.MOVIE_RATING" />
+    <EntitySet Name="RESERVATION" EntityType="Self.RESERVATION" />
+    <EntitySet Name="RESERVATION_SEATS" EntityType="Self.RESERVATION_SEATS" />
+    <EntitySet Name="SCHEDULE" EntityType="Self.SCHEDULE" />
+    <EntitySet Name="SEAT" EntityType="Self.SEAT" />
+    <EntitySet Name="THEATRE" EntityType="Self.THEATRE" />
+    <AssociationSet Name="FK__MOVIE__Genre__1BC821DD" Association="Self.FK__MOVIE__Genre__1BC821DD">
+      <End Role="MOVIE_GENRE" EntitySet="MOVIE_GENRE" />
+      <End Role="MOVIE" EntitySet="MOVIE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MOVIE__Rating__1CBC4616" Association="Self.FK__MOVIE__Rating__1CBC4616">
+      <End Role="MOVIE_RATING" EntitySet="MOVIE_RATING" />
+      <End Role="MOVIE" EntitySet="MOVIE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SCHEDULE__MovieI__25518C17" Association="Self.FK__SCHEDULE__MovieI__25518C17">
+      <End Role="MOVIE" EntitySet="MOVIE" />
+      <End Role="SCHEDULE" EntitySet="SCHEDULE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RESERVATI__Reser__2EDAF651" Association="Self.FK__RESERVATI__Reser__2EDAF651">
+      <End Role="RESERVATION" EntitySet="RESERVATION" />
+      <End Role="RESERVATION_SEATS" EntitySet="RESERVATION_SEATS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RESERVATI__Sched__282DF8C2" Association="Self.FK__RESERVATI__Sched__282DF8C2">
+      <End Role="SCHEDULE" EntitySet="SCHEDULE" />
+      <End Role="RESERVATION" EntitySet="RESERVATION" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RESERVATI__SeatI__2FCF1A8A" Association="Self.FK__RESERVATI__SeatI__2FCF1A8A">
+      <End Role="SEAT" EntitySet="SEAT" />
+      <End Role="RESERVATION_SEATS" EntitySet="RESERVATION_SEATS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SCHEDULE__Theatr__245D67DE" Association="Self.FK__SCHEDULE__Theatr__245D67DE">
+      <End Role="THEATRE" EntitySet="THEATRE" />
+      <End Role="SCHEDULE" EntitySet="SCHEDULE" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

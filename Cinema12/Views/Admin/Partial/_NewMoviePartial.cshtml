@@ -1,0 +1,96 @@
+﻿@model Cinema12.Models.Movie
+
+<form method="post" action="@Url.Action("NewMovie", "Admin")" id="newMovieForm"  enctype="multipart/form-data">
+
+    <input type="hidden" id="MovieId" name="MovieId" value="@Model.MovieId" />
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-md-2">Title</label>
+            <div class="col-md-10 form-inline">
+                <input type="text" id="Title" name="Title" value="@Model.Title" class="form-control" required="required" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Duration</label>
+            <div class="col-md-10">
+                <input type="text" id="Duration" name="Duration" value="@Model.Duration" class="form-control" required="required" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Genre</label>
+            <div class="col-md-10">
+                <select class="form-control" id="Genre" name="Genre" required="required">
+                    @foreach (Cinema12.Models.MovieGenre genre in Cinema12.Models.MovieGenre.GetMovieGenresList())
+                    {
+                        <option value="@genre.MovieGenreId" @(Model.Genre == genre.MovieGenreId ? "selected" : "")> @genre.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Rating</label>
+            <div class="col-md-10">
+                <select class="form-control" id="Rating" name="Rating" required="required">
+                    @foreach (Cinema12.Models.MovieRating rating in Cinema12.Models.MovieRating.GetMovieRatingsList())
+                    {
+                        <option value="@rating.MovieRatingId" @(Model.Rating == rating.MovieRatingId ? "selected" : "")> @rating.Acronym - @rating.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Distribution</label>
+            <div class="col-md-10">
+                <input type="text" id="Distribution" name="Distribution" value="@Model.Distribution" class="form-control" required="required" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Description</label>
+            <div class="col-md-10">
+                <input type="text" id="Description" name="Description" value="@Model.Description" class="form-control" required="required" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Poster</label>
+            <div class="col-md-10">
+                <input type="file" id="poster" name="inputFile" accept="image/*">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Trailer</label>
+            <div class="col-md-10">
+                <input type="text" id="Trailer" name="Trailer" value="@Model.Trailer" class="form-control" required="required" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Start Date</label>
+            <div class="col-md-10">
+                <input type="date" style="width: 150px;" id="startDate" name="StartDate" class="form-control" autocomplete="off" required="required" min="@(DateTime.Now.ToString("yyyy-MM-dd"))" value="@Model.StartDate.ToString("yyyy-MM-dd")" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">End Date</label>
+            <div class="col-md-10">
+                <input type="date" style="width: 150px;" id="endDate" name="endDate" class="form-control" autocomplete="off" required="required" min="@(DateTime.Now.ToString("yyyy-MM-dd"))" value="@Model.EndDate.ToString("yyyy-MM-dd")" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+
+    </div>
+</form>
+

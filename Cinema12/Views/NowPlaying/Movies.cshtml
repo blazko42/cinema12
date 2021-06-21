@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Cinema12.Models.Movie>
+
+@{
+    ViewBag.Title = "Movies";
+}
+
+<h1 class="display-3">Now Playing</h1>
+
+<div class="row">
+    
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-6 col-md-4" style="padding: 15px;">
+            <div class="thumbnail" style="min-height: 725px;">
+                <img src="@Url.Action("DisplayPoster", "Admin", new { movieId = item.MovieId })" />
+                <div class="caption">
+                    <h3>@item.Title</h3>
+                    <p><b>Genre: </b>@foreach (Cinema12.Models.MovieGenre genre in Cinema12.Models.MovieGenre.GetMovieGenresList())
+                    {
+                        if (item.Genre == genre.MovieGenreId)
+                        {
+                            @genre.Name;
+                        }
+                    }</p>
+                    <p><b>Description: </b>@item.Description</p>
+                    <p><a href="@Url.Action("ReserveTicket", new { movieId = item.MovieId })" class="btn btn-primary" role="button">Reserve Ticket</a> <a href="@item.Trailer" class="btn btn-default" role="button">Trailer</a></p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

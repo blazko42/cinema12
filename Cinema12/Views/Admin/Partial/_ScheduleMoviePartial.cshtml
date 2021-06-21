@@ -1,0 +1,76 @@
+﻿@model Cinema12.Models.Schedule
+
+<form method="post" action="@Url.Action("NewSchedule", "Admin")" id="newScheduleForm" enctype="multipart/form-data">
+    <div class="form-horizontal">
+
+        @Html.HiddenFor(h => Model.ScheduleId)
+
+        @Html.HiddenFor(h => Model.MovieId)
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Movie</label>
+            <div class="col-md-10">
+                <select disabled class="form-control" id="movie" name="movie">
+                    @foreach (Cinema12.Models.Movie movie in Cinema12.Models.Movie.GetMoviesList())
+                    {
+                        <option @(movie.MovieId == Convert.ToInt32(Request.QueryString["movieId"]) ? "selected" : "")> @movie.Title</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Theatre</label>
+            <div class="col-md-10 form-inline">
+                <select class="form-control" id="TheatreId" name="TheatreId" required="required">
+                    @foreach (Cinema12.Models.Theatre theatre in Cinema12.Models.Theatre.GetTheatreName())
+                    {
+                        <option value="@theatre.TheatreId" @(Model.TheatreId == theatre.TheatreId ? "selected" : "")> @theatre.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Tickets Available</label>
+            <div class="col-md-10">
+                <input type="text" id="TicketsLeft" name="TicketsLeft" value="@Model.TicketsLeft" class="form-control" disabled />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Air Date</label>
+            <div class="col-md-10">
+                @foreach (Cinema12.Models.Movie movie in Cinema12.Models.Movie.GetMoviesList())
+                {
+                    if (movie.MovieId == Convert.ToInt32(Request.QueryString["movieId"]))
+                    {
+                        <label class="control-label col-md-1">From:</label>
+                        <input type="text" class="form-control" id="StartDate" name="StartDate" disabled value="@movie.StartDate.ToString("dd/MM/yyyy")" />
+                        <label class="control-label col-md-1">To:</label>
+                        <input type="text" class="form-control" id="EndDate" name="EndDate" disabled value="@movie.EndDate.ToString("dd/MM/yyyy")" />
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Air Hours</label>
+            <div class="col-md-10">
+                <label class="control-label col-md-1">From:</label>
+                <input type="time" style="width: 120px;" step="900" min="12:00" max="23:00" id="FromDate" name="FromDate" class="form-control" autocomplete="off" required="required" value="@Model.FromDate.ToString("HH:mm")" />
+                <label class="control-label col-md-1">To:</label>
+                <input type="time" style="width: 120px;" step="900" min="12:00" max="23:00" id="ToDate" name="ToDate" class="form-control" autocomplete="off" required="required" value="@Model.ToDate.ToString("HH:mm")" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+
+    </div>
+</form>
+
+

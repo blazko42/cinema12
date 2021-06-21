@@ -1,0 +1,12 @@
+﻿@model Cinema12.Models.Schedule
+
+@{
+    ViewBag.Title = "NewSchedule";
+}
+
+<h2>New Schedule</h2>
+
+
+@Html.Partial("Partial/_ScheduleMoviePartial")
+
+@Html.ActionLink("Back to Schedule", "ScheduleMovie", new { movieId = Request.QueryString["movieId"] })

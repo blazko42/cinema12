@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Cinema12.Models.Movie>
+
+@{
+    ViewBag.Title = "MovieList";
+}
+
+<h2>Movie List</h2>
+<p>
+    @Html.ActionLink("Back", "Index", "Admin")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Start Date
+        </th>
+        <th>
+            End Date
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Title
+            </td>
+            <td>
+                @item.StartDate.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @item.EndDate.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @Html.ActionLink("Test Isolation Levels", "TestModule", new { movieId = item.MovieId })
+            </td>
+        </tr>
+    }
+</table>

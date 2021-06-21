@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Cinema12ModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="MOVIE">
+      <EntityTypeMapping TypeName="Cinema12Model.MOVIE">
+        <MappingFragment StoreEntitySet="MOVIE">
+          <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="Genre" ColumnName="Genre" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="Distribution" ColumnName="Distribution" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Poster" ColumnName="Poster" />
+          <ScalarProperty Name="Trailer" ColumnName="Trailer" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MOVIE_GENRE">
+      <EntityTypeMapping TypeName="Cinema12Model.MOVIE_GENRE">
+        <MappingFragment StoreEntitySet="MOVIE_GENRE">
+          <ScalarProperty Name="MovieGenreId" ColumnName="MovieGenreId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MOVIE_RATING">
+      <EntityTypeMapping TypeName="Cinema12Model.MOVIE_RATING">
+        <MappingFragment StoreEntitySet="MOVIE_RATING">
+          <ScalarProperty Name="MovieRatingId" ColumnName="MovieRatingId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Acronym" ColumnName="Acronym" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RESERVATION">
+      <EntityTypeMapping TypeName="Cinema12Model.RESERVATION">
+        <MappingFragment StoreEntitySet="RESERVATION">
+          <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+          <ScalarProperty Name="ScheduleId" ColumnName="ScheduleId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="NoOfSeats" ColumnName="NoOfSeats" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RESERVATION_SEATS">
+      <EntityTypeMapping TypeName="Cinema12Model.RESERVATION_SEATS">
+        <MappingFragment StoreEntitySet="RESERVATION_SEATS">
+          <ScalarProperty Name="ReservationSeatsId" ColumnName="ReservationSeatsId" />
+          <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+          <ScalarProperty Name="SeatId" ColumnName="SeatId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SCHEDULE">
+      <EntityTypeMapping TypeName="Cinema12Model.SCHEDULE">
+        <MappingFragment StoreEntitySet="SCHEDULE">
+          <ScalarProperty Name="ScheduleId" ColumnName="ScheduleId" />
+          <ScalarProperty Name="TheatreId" ColumnName="TheatreId" />
+          <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+          <ScalarProperty Name="TicketsLeft" ColumnName="TicketsLeft" />
+          <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+          <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SEAT">
+      <EntityTypeMapping TypeName="Cinema12Model.SEAT">
+        <MappingFragment StoreEntitySet="SEAT">
+          <ScalarProperty Name="SeatId" ColumnName="SeatId" />
+          <ScalarProperty Name="RowLetter" ColumnName="RowLetter" />
+          <ScalarProperty Name="SeatNumber" ColumnName="SeatNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="THEATRE">
+      <EntityTypeMapping TypeName="Cinema12Model.THEATRE">
+        <MappingFragment StoreEntitySet="THEATRE">
+          <ScalarProperty Name="TheatreId" ColumnName="TheatreId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

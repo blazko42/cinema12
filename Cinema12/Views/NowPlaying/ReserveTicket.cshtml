@@ -1,0 +1,92 @@
+﻿@model Cinema12.Models.Reservation
+
+@{
+    ViewBag.Title = "ReserveTicket";
+}
+
+<h2>
+    Reservation for @foreach (Cinema12.Models.Movie movie in Cinema12.Models.Movie.GetMoviesList())
+    {
+        if (movie.MovieId == Convert.ToInt32(Request.QueryString["movieId"]))
+        {
+            @movie.Title;
+        }
+    }
+</h2>
+
+<p>
+    @Html.ActionLink("Back", "Movies")
+</p>
+
+<form method="post" action="@Url.Action("ReserveTicket", "NowPlaying")" id="newReservationForm">
+
+
+    @Html.HiddenFor(h => Model.ReservationId)
+    @Html.HiddenFor(h => Model.MovieId)
+
+    <div class="form-horizontal">
+
+        <img src="~/Images/screen.png" width="2000" />
+      
+        &nbsp;
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Number of Tickets:</label>
+            <div class="col-md-10 form-inline">
+                <input type="number" min="1" max="5" id="NoOfSeats" name="NoOfSeats" value="@Model.NoOfSeats || 0" class="form-control" required="required" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Choose Seats:</label>
+            <div class="col-md-10 form-inline">
+                <select class="form-control" id="SeatId" name="SeatId" required="required" hidden>
+                    @foreach (Cinema12.Models.Seat seat in Cinema12.Models.Seat.GetSeatsList())
+                    {
+                        <option value="@seat.SeatId">@seat.RowLetter - @seat.SeatNumber</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Name:</label>
+            <div class="col-md-10 form-inline">
+                <input type="text" id="ClientName" name="ClientName" value="@Model.ClientName" class="form-control" required="required" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Telephone Number</label>
+            <div class="col-md-10 form-inline">
+                <input type="text" id="ClientTelephone" name="ClientTelephone" value="@Model.ClientTelephone" class="form-control" required="required" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Date:</label>
+            <div class="col-md-10 form-inline">
+                <select class="form-control" id="ScheduleId" name="ScheduleId" required="required">
+                    @foreach (Cinema12.Models.Schedule schedule in Cinema12.Models.Schedule.GetMovieSchedule(Convert.ToInt32(Request.QueryString["movieId"])))
+                    {
+                        <option value="@schedule.ScheduleId"> @schedule.TheatreName | @schedule.TicketsLeft tickets left | Ora @schedule.FromDate.ToString("HH:mm") - @schedule.ToDate.ToString("HH:mm")</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+
+    </div>
+</form>
+
+<script>
+    function Tickets() {
+        var NumberOfTickets = document.getElementById("NoOfSeats").value;
+
+    }
+</script>

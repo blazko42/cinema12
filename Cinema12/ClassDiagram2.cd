@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Cinema12.Controllers.AdminController">
+    <Position X="0.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAQAAAEAAAUAAAAAAAAAAAAAAAABFACAgAAAA=</HashCode>
+      <FileName>Controllers\AdminController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cinema12.Controllers.HomeController">
+    <Position X="3" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAIAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cinema12.Controllers.NowPlayingController">
+    <Position X="5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Controllers\NowPlayingController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cinema12.Controllers.IsolationModuleController">
+    <Position X="7.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\IsolationModuleController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cinema12.RouteConfig">
+    <Position X="3" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\RouteConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cinema12.Models.Movie">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gCAAAQAAQAAiAEQAAAICACAgAQAAEAEAAAAAAEAAAAA=</HashCode>
+      <FileName>Models\Movie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cinema12.Models.MovieGenre">
+    <Position X="2.25" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAgAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\MovieGenre.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cinema12.Models.MovieRating">
+    <Position X="2.25" Y="5.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAREAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Models\MovieRating.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cinema12.Models.Reservation">
+    <Position X="8.75" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAIAAAAGCQAhAABAQkAAAAAAAQABAAAAQIAABAABAAA=</HashCode>
+      <FileName>Models\Reservation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cinema12.Models.Schedule">
+    <Position X="4.75" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAEABAgAABAAECAAAAgAQAAAAAAABAABEABACA=</HashCode>
+      <FileName>Models\Schedule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cinema12.Models.Seat">
+    <Position X="6.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAIAAAAAAAAAIAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Models\Seat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cinema12.Models.TestingModule">
+    <Position X="11" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EACAAgAAAAAgAABAAAAAAAEAAIAAACAgAAABAAAAIAA=</HashCode>
+      <FileName>Models\TestingModule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cinema12.Models.Theatre">
+    <Position X="6.75" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Theatre.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cinema12.Models.User">
+    <Position X="11" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAgAAAAAABAoACAAAAAQCAQAQAAAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

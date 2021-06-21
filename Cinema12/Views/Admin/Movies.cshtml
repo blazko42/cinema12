@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Cinema12.Models.Movie>
+
+
+@{
+    ViewBag.Title = "Movies";
+}
+
+<h2>Movies</h2>
+
+<p>
+    @Html.ActionLink("New Movie", "NewMovie") | 
+    @Html.ActionLink("Back", "Index")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Duration
+        </th>
+        <th>
+            Genre
+        </th>
+        <th>
+            Rating
+        </th>
+        <th>
+            Distribution
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Poster
+        </th>
+        <th>
+            Trailer
+        </th>
+        <th>
+            Start Date
+        </th>
+        <th>
+            End Date
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Title
+            </td>
+            <td>
+                @item.Duration minutes
+            </td>
+            <td>
+                @foreach (Cinema12.Models.MovieGenre genre in Cinema12.Models.MovieGenre.GetMovieGenresList())
+                {
+                    if (item.Genre == genre.MovieGenreId)
+                    {
+                        @genre.Name;
+                    }
+                }
+            </td>
+            <td>
+                @foreach (Cinema12.Models.MovieRating rating in Cinema12.Models.MovieRating.GetMovieRatingsList())
+                {
+                    if (item.Rating == rating.MovieRatingId)
+                    {
+                        @rating.Acronym;
+                    }
+                }
+            </td>
+            <td>
+                @item.Distribution
+            </td>
+            <td>
+                @item.Description
+            </td>
+            <td>
+                <img src="@Url.Action("DisplayPoster", "Admin", new { movieId = item.MovieId })" />
+            </td>
+            <td>
+                <a href="@item.Trailer">Trailer</a>
+            </td>
+            <td>
+                @item.StartDate.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @item.EndDate.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @Html.ActionLink("Schedule", "ScheduleMovie", new {movieId = item.MovieId } )
+                @Html.ActionLink("Edit", "NewMovie", new { movieId = item.MovieId }) |
+                @Html.ActionLink("Delete", "DeleteMovie", new { movieId = item.MovieId })
+            </td>
+        </tr>
+    }
+</table>
