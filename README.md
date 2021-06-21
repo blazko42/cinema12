@@ -1,2 +1,4 @@
 # cinema12
-Concurrent Access Study to an SQL Database based on different isolation levels of transactions
+Study of concurrent access to a databse implemented in mssql server 2016
+
+Copyright © 2017
